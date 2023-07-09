@@ -1,0 +1,106 @@
+.range_button {
+  color: #ffffff;
+  background-color: #66CDAA;
+  border: none;
+  border-radius: 25px;
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+}
+
+.range_button:hover {
+  background-color: #48D1CC;
+  box-shadow: 0px 15px 20px rgba(46,229,157,0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.range_button:active {
+  color: #ffffff;
+  background-color: #48D1CC;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.accel_button {
+  color: #ffffff;
+  background-color: #FF69B4;
+  border: none;
+  border-radius: 25px;
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+}
+
+.accel_button:hover {
+    background-color: #FF1493;
+    box-shadow: 0px 15px 20px rgba(255,20,147,0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.accel_button:active {
+    color: #ffffff;
+    background-color: #FF1493;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+
+.fast_button {
+    color: #ffffff;
+    background-color: #6495ED;
+    border: none;
+    border-radius: 25px;
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
+    transition: all .3s ease-in-out; 
+}
+
+.fast_button:hover {
+    background-color: #4169E1;
+    box-shadow: 0px 15px 20px rgba(100,149,237,0.4);
+    color: #fff;
+    transform : translateY(-7px);
+}	
+
+
+.fast_button:active {
+    color:#ffffff; 
+    background-color:#4169E1; 
+    box-shadow :0px 8px px rgba(0,0,0,.1); 
+    transform : translateY(-3px); 
+}
+
+
+
+div.tooltip { 
+    position: fixed;     
+    text-align: center;     
+    padding: 12px;       
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: #333333;
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+
