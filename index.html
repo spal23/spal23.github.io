@@ -73,9 +73,9 @@
 const svg = d3.select("#efficiency_chart")
   .append("svg")
   .attr("width", 1000)
-  .attr("height", 620)
+  .attr("height", 500)
   .append("g")
-  .attr("transform", `translate(60, 30)`);
+  .attr("transform", `translate(60, -30)`);
 
   var x_scale = d3.scaleLinear()
   .domain([0, 300])
@@ -158,7 +158,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     {
       note: {
         label: "The Lightyear One has highest efficiency consuming only 104 wat-hrs of energy to travel a distance of one kilometer and is priced at 149000 Euros",
-        title: "Min Accelaration"
+        title: "Most Efficient EV"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
