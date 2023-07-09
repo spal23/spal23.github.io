@@ -123,7 +123,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   .on("mousemove", function(event, d) {
     tooltip
       .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Price in Euro: "+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
-      .style("left", (event.pageX)+30 + "px")
+      .style("left", (event.pageX)-30 + "px")
       .style("top",  (event.pageY) +"px")
 
   })
