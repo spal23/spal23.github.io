@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EV Buyer's Guide</title>
+  <title>Electric Vehicle(EV) Buyer's Guide</title>
   <link rel="stylesheet" href="Style.css">
   <style>
     body {
@@ -50,14 +50,14 @@
 </head>
 <body>
   <h1>Electric Vehicle Buyer's Guide</h1>
-  <p>Electric vehicles (EVs) are gaining in popularity. <a href="https://www.kaggle.com/datasets/geoffnel/evs-one-electric-vehicle-dataset">EV-Dataset-Kaggle</a> lists the key metrics for all EVs. We'd like to compare some of these performance metrics with price, to find out which EVs offer the best value for efficiency.In our first chart, we compare <b>accelaration </b> in seconds (on the x-axis) with <b>efficiency in y-axis</b>. Using this visualization, we can see which vehicles offer the most efficiency!</p>
+  <p>This slideshow presents a narrative visualization comparing electric vehicles based on their acceleration, top speed, range, fast charging capability, efficiency, and price. Through three scenes containing scatterplots, viewers can explore the relationship between these key features and make informed decisions when choosing an electric vehicle. With the growing popularity of electric vehicles due to their environmental benefits and cost savings, this visualization provides valuable insights for potential buyers.</p>
   
-  <p class="instructions">Click on one of the buttons below to continue exploring these key metrics to find the right EV at the right efficiency for you! Hover over any of the datapoints to see the selected vehicle's details!</</p>
+  <p class="instructions">Discover your perfect electric vehicle with just a click! Choose one of the buttons below to reveal a key metric chart and hover over any datapoint to uncover the details of each vehicle. Start your journey towards a greener future now!</</p>
 
   <div class="button-container">
-    <a href="index.html" class="range_button active">Range</a>
-    <a href="acceleration.html" class="accel_button">Acceleration</a>
-    <a href="fastcharging.html" class="fast_button">Fast-Charging</a>
+    <a href="index.html" class="Efficiency_button active">Efficiency & Price</a>
+    <a href="acceleration.html" class="accel_button">Accelaration & Top Speed</a>
+    <a href="fastcharging.html" class="fast_button">Range & FastCharge</a>
   </div>
 
   <div id="range_chart"></div>
@@ -69,7 +69,7 @@
 </body>
 <script>
 
-const svg = d3.select("#range_chart")
+const svg = d3.select("#efficiency_chart")
   .append("svg")
   .attr("width", 1000)
   .attr("height", 620)
@@ -77,7 +77,7 @@ const svg = d3.select("#range_chart")
   .attr("transform", `translate(60, 30)`);
 
   var x_scale = d3.scaleLinear()
-  .domain([0, 25])
+  .domain([0, 300])
   .range([0, 920]);
     
   var x_axis = d3.axisBottom(x_scale);
@@ -87,7 +87,7 @@ const svg = d3.select("#range_chart")
   .call(x_axis);
 
   const y_scale = d3.scaleLinear()
-  .domain([0, 300])
+  .domain([0, 300000])
   .range([570, 0]);
 
   var y_axis = d3.axisLeft(y_scale)
@@ -97,7 +97,7 @@ const svg = d3.select("#range_chart")
 
 d3.csv("ElectricCarData_Clean.csv").then( function(data) {
 
-  var tooltip = d3.select("#range_chart").append("div")
+  var tooltip = d3.select("#efficiency_chart").append("div")
     .attr("class", "tooltip")
 
   svg.append("g")
@@ -105,8 +105,8 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   .data(data)
   .enter()
   .append("circle")
-      .attr("cx", function (d) { return x_scale(d.AccelSec); } )
-      .attr("cy", function (d) { return y_scale(d.Efficiency_WhKm); } )
+      .attr("cx", function (d) { return x_scale(d.Efficiency_WhKm); } )
+      .attr("cy", function (d) { return y_scale(d.PriceEuro); } )
       .attr("r", 5)
       .style("fill", "#66CDAA")
       .style("opacity", 0.5)
@@ -121,7 +121,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
 
   .on("mousemove", function(event, d) {
     tooltip
-      .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "AccelSec: "+ d.acceleration + "</b><br>make: " + d.Brand + "<br>model: " + d.Model)
+      .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Price in Euro: "+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
       .style("left", (event.pageX)+10 + "px")
       .style("top",  (event.pageY) +"px")
 
@@ -137,26 +137,26 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   const annotations = [
     {
       note: {
-        label: "The highest accelaration EV is the Tesla rodster at 2.1 seconds",
-        title: "Highest Accelaration"
+        label: "The Tesla Roadster is the most expensive EV, priced at 215000 Euros, consuming 206 watt-hrs of energy to travel a distance of one kilometer",
+        title: "Most Expensive EV"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
-      x: x_scale(2.1),
-      y: y_scale(206),
-      dy: -130,
-      dx: 10
+      x: x_scale(206),
+      y: y_scale(215000),
+      dy: 30,
+      dx: -30
     },
 
     {
       note: {
-        label: "The Renault Kangoo Electric has lowest accelaration 22.4 seconds!",
+        label: "The Lightyear One has highest efficiency consuming only 104 wat-hrs of energy to travel a distance of one kilometer and is priced at 149000 Euros",
         title: "Min Accelaration"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
-      x: x_scale(22.4),
-      y: y_scale(194),
+      x: x_scale(104),
+      y: y_scale(149000),
       dy: 30,
       dx: -30
     }
