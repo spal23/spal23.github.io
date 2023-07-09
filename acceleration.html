@@ -119,7 +119,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
 
  .on("mousemove", function(event, d) {
   var tooltipHeight = tooltip.node().getBoundingClientRect().height;
-  var chartHeight = d3.select("#efficiency_chart").node().getBoundingClientRect().height;
+  var chartHeight = d3.select("#acceleration_chart").node().getBoundingClientRect().height;
   var topPosition = event.pageY + 10;
   if (event.pageY + tooltipHeight > chartHeight) {
     topPosition = event.pageY - tooltipHeight - 20;
@@ -148,8 +148,8 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
       subject: { radius: 10 },
       x: x_scale(206),
       y: y_scale(2.1),
-      dy: -160,
-      dx: 50
+      dy: -180,
+      dx: 40
     },
 
     {
