@@ -49,7 +49,7 @@
   </style>
 </head>
 <body>
-  <h1>Electric Vehicle Buyer's Guide</h1>
+  <h1>Electric Vehicle(EV) Buyer's Guide</h1>
   <p>This slideshow presents a narrative visualization comparing Electric Vehicles based on their acceleration, top speed, range, fast charging capability, efficiency, and price. Through three scenes, viewers can explore the relationship between these essential features and make informed decisions when choosing an Electric Vehicle. With the growing popularity of Electric Vehicles due to their environmental benefits and cost savings, this visualization provides valuable insights for potential buyers.
   Choose one of the buttons below to reveal a key metric chart. Hover over any datapoint to uncover the details of each vehicle. </p>
   
@@ -123,8 +123,8 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   .on("mousemove", function(event, d) {
     tooltip
       .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Price in Euro: "+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
-      .style("left", (event.pageX)-30 + "px")
-      .style("top",  (event.pageY) +"px")
+      .style("left", (event.pageX)+10 + "px")
+      .style("top",  (event.pageY)+10+"px")
 
   })
 
