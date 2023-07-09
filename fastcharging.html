@@ -130,7 +130,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     topPosition = event.pageY - tooltipHeight - 20;
   }
   tooltip
-    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "FastCharge Rate in Km/H: "+ d.FastCharge_KmH + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
+    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + "Wh/Km"+" " + "FastCharge Rate: "+ d.FastCharge_KmH +"Km/H"</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model+"Price: €"+d.PriceEuro)
     .style("left", (event.pageX)+10 + "px")
     .style("top", topPosition + "px")
 })
@@ -146,7 +146,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   const annotations = [
     {
       note: {
-        label: "Tesla Model 3 Long Range Dual Motor has the <b>Fastest</b> recharge rate of </b>940 Km/H</b> with an <b>Efficiency of 161 Wh/Km</b>",
+        label: "Tesla Model 3 Long Range Dual Motor has the Fastest recharge rate of 940 Km/H with an <b>Efficiency of 161 Wh/Km .",
         title: "Best FastCharge Rate - Tesla Model 3 Long Range Dual Motor"
       },
       type: d3.annotationCalloutCircle,
@@ -159,7 +159,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
 
     {
       note: {
-        label: "The Volkswagen e-Up! has an <b>Efficiency of 166 Wh/Km</b> and can <b>Fast Charge</b> at a slower rate of <b>170 Km/H</b>",
+        label: "The Volkswagen e-Up! has an Efficiency of 166 Wh/Km and can Fast Charge at a slower rate of 170 Km/H .",
         title: "Slow FastCharge Rate - Volkswagen e-Up!"
       },
       type: d3.annotationCalloutCircle,
@@ -167,7 +167,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
       x: x_scale(166),
       y: y_scale(170),
       dy: -30,
-      dx: -80
+      dx: -100
     }
   ]
 
