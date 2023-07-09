@@ -85,7 +85,7 @@ const svg = d3.select("#acceleration_chart")
   .call(x_axis);
 
   const y_scale = d3.scaleLinear()
-  .domain([0, 300000])
+  .domain([0, 25])
   .range([470, 0]);
 
   var y_axis = d3.axisLeft(y_scale)
