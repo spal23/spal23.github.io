@@ -174,7 +174,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
 
 })
   
-d3.selectAll('.annotations')
+d3.selectAll('.annotation')
   .on('mouseover', function(event, d) {
     tooltip.style("opacity", 1);
   })
@@ -192,6 +192,6 @@ d3.selectAll('.annotations')
   })
   .on('mouseleave', function(d) {
     tooltip.transition().duration(200).style("opacity", 0);
-  })
+  });
 </script>
 </html>
