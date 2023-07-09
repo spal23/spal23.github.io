@@ -84,12 +84,12 @@ const svg = d3.select("#efficiency_chart")
   var x_axis = d3.axisBottom(x_scale);
 
   svg.append("g")
-  .attr("transform", `translate(0, 470)`)
+  .attr("transform", `translate(0, 450)`)
   .call(x_axis);
 
   const y_scale = d3.scaleLinear()
   .domain([0, 300000])
-  .range([480, 0]);
+  .range([470, 0]);
 
   var y_axis = d3.axisLeft(y_scale)
 
