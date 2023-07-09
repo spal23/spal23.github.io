@@ -54,6 +54,7 @@
   <br>Choose one of the buttons below to reveal a key metric chart.</p>
   <p class="instructions">Discover your perfect Electric Vehicle (EV) with just a click! Start your journey towards a Greener future Now!</</p>
   <p class="data-source">Data Source: <a href="https://www.kaggle.com/datasets/geoffnel/evs-one-electric-vehicle-dataset">EV-Dataset-Kaggle</a></p>
+  <p>This first chart represents Efficiency in watt-hours per kilometer for different EVs on the x-axis and their prices in Euros on the y-axis.Hover over any datapoint to uncover the details of each vehicle and identify which models are more efficient and affordable.</p>
   <div class="button-container">
     <a href="index.html" class="Efficiency_button active">Efficiency & Price</a>
     <a href="acceleration.html" class="accel_button">Accelaration & Top Speed</a>
@@ -72,12 +73,6 @@ const svg = d3.select("#efficiency_chart")
   .attr("height", 600)
   .append("g")
   .attr("transform", `translate(60, 20)`);
-
-  // Add caption
-  svg.append("text")
-  .attr("x", 0)
-  .attr("y", -10)
-  .text("This first chart represents Efficiency in watt-hours per kilometer for different EVs on the x-axis and their prices in Euros on the y-axis.Hover over any datapoint to uncover the details of each vehicle and identify which models are more efficient and affordable");
 
   var x_scale = d3.scaleLinear()
   .domain([0, 300])
