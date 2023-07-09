@@ -95,6 +95,11 @@ const svg = d3.select("#fastcharge_chart")
 
 d3.csv("ElectricCarData_Clean.csv").then( function(data) {
 
+  // Filter the data to exclude points with a fast charging rate of 0
+  data = data.filter(function (d) {
+    return d.FastCharge_KmH != 0;
+  });
+
   var tooltip = d3.select("#fastcharge_chart").append("div")
     .attr("class", "tooltip")
 
