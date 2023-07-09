@@ -56,10 +56,10 @@
   <h1>Electric Vehicle(EV) Buyer's Guide</h1>
   <p>Electric Vehicles have grown in populatrity due to their environmental benefits and cost savings.This narrative visualization intends to provide potential buyers of Electric Vehicles (EVs) valuable insights by comparing essential features of EVs like price, acceleration and fast charging capability with vehicle efficiency, through three scenes.</p>
   <p class="instructions">Choose one of the buttons below to reveal a key metric chart! Discover your perfect Electric Vehicle (EV) with just a click and start your journey towards a Greener Future!</</p>
-  <p>The chart <span class="underline"><b>Efficiency & Accelaration</b></span> represents <b>Efficiency</b> in Watt-Hours per Kilometer for different EVs on the <b>x-axis</b> and their ability to go from <b>0-100 Km/H Accelaration</b> in seconds on the <b>y-axis</b>.Hover over any datapoint to uncover the details of each vehicle to understand the trade-off between a car's acceleration and its efficiency.</p>
+  <p>The chart <span class="underline"><b>Efficiency & Acceleration</b></span> represents <b>Efficiency</b> in Watt-Hours per Kilometer for different EVs on the <b>x-axis</b> and their ability to go from <b>0-100 Km/H Accelaration</b> in seconds on the <b>y-axis</b>.Hover over any datapoint to uncover the details of each vehicle to understand the trade-off between a car's acceleration and its efficiency.</p>
   <div class="button-container">
     <a href="index.html" class="Efficiency_button">Efficiency & Price</a>
-    <a href="acceleration.html" class="accel_button">Efficiency & Accelaration</a>
+    <a href="acceleration.html" class="accel_button">Efficiency & Acceleration</a>
     <a href="fastcharging.html" class="fast_button">Efficiency & FastCharge</a>
   </div>
   <p class="data-source"><b>Data Source:</b> <a href="https://www.kaggle.com/datasets/geoffnel/evs-one-electric-vehicle-dataset">EV-Dataset-Kaggle</a></p>
@@ -144,8 +144,8 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   const annotations = [
     {
       note: {
-        label: "Tesla Roadster can go from 0 to 100 Km/H in 2.1 Seconds and is best in terms of accelaration with an efficiency of 206 Wh/Km",
-        title: "Fastest Accelaration - Tesla Roadster"
+        label: "Tesla Roadster can go from 0 to 100 Km/H in 2.1 Seconds and is best in terms of acceleration with an efficiency of 206 Wh/Km",
+        title: "Fastest Acceleration - Tesla Roadster"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
@@ -158,7 +158,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     {
       note: {
         label: "Renault Kangoo Maxi ZE 33 takes longest time of 22.4 Seconds to go from 0 to 100 Km/H with an efficiency of 194 Wh/Km",
-        title: "Slowest Accelaration - Renault Kangoo Maxi ZE 33"
+        title: "Slowest Acceleration - Renault Kangoo Maxi ZE 33"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
