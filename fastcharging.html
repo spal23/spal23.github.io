@@ -130,7 +130,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     topPosition = event.pageY - tooltipHeight - 20;
   }
   tooltip
-    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " Wh/Km"+" " + "FastCharge Rate: "+ d.FastCharge_KmH +" Km/H</b><br>Brand: " + d.Brand +" " +"<br>Model: " + d.Model+" " +"Price: €"+d.PriceEuro)
+    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " Wh/Km"+" " + "FastCharge Rate: "+ d.FastCharge_KmH +" Km/H</b><br>Brand: " + d.Brand +" " +"<br>Model: " + d.Model+"<br>Price: €"+d.PriceEuro)
     .style("left", (event.pageX)+10 + "px")
     .style("top", topPosition + "px")
 })
