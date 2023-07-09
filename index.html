@@ -125,7 +125,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     topPosition = event.pageY - tooltipHeight - 20;
   }
   tooltip
-    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Price in Euro: "+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
+    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm +" Wh/Km"+" " + "Price: €"+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
     .style("left", (event.pageX)+10 + "px")
     .style("top", topPosition + "px")
 })
@@ -141,8 +141,8 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   const annotations = [
     {
       note: {
-        label: "The Tesla Roadster is the most expensive EV, priced at 215000 Euros, consuming 206 watt-hrs of energy to travel a distance of one kilometer",
-        title: "Most Expensive EV"
+        label: "The Tesla Roadster is the most expensive EV, priced at €215000, consuming 206 watt-hrs of energy to travel a distance of one kilometer",
+        title: "Most Expensive EV - Tesla Roadster"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
@@ -154,8 +154,8 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
 
     {
       note: {
-        label: "The Lightyear One has highest efficiency consuming only 104 wat-hrs of energy to travel a distance of one kilometer and is priced at 149000 Euros",
-        title: "Most Efficient EV"
+        label: "The Lightyear One has highest efficiency consuming only 104 wat-hrs of energy to travel a distance of one kilometer and is priced at €149000",
+        title: "Most Efficient EV - Lightyear One"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
