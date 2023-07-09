@@ -25,7 +25,7 @@
     .instructions {
       font-size: 14;
       font-weight: bold;
-      margin: 15px 0;
+      margin: 20px 0;
       text-align: justify;
     }
 
@@ -83,7 +83,7 @@ const svg = d3.select("#efficiency_chart")
   var x_axis = d3.axisBottom(x_scale);
 
   svg.append("g")
-  .attr("transform", `translate(0, 460)`)
+  .attr("transform", `translate(0, 470)`)
   .call(x_axis);
 
   const y_scale = d3.scaleLinear()
