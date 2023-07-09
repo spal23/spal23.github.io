@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electric Vehicle(EV) Buyer's Guide</title>
+  <link rel="stylesheet" href="Style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 20px 0;
+      text-align: justify;
+    }
+    p {
+      font-size: 15px;
+      margin: 10px 0;
+      max-width: 1460px;
+      text-align: justify;
+    }
+    .instructions {
+      font-size: 13;
+      font-weight: bold;
+      margin: 10px 0;
+      text-align: justify;
+    }
+
+    a {
+      color: #6495ED;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin: 18px 0;
+    }
+    .data-source {
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <h1>Electric Vehicle(EV) Buyer's Guide</h1>
+  <p>Electric Vehicles have grown in populatrity due to their environmental benefits and cost savings.This slideshow narrative visualization intends to provide potential buyers of Electric Vehicles (EVs) valuable insights by comparing essential features of EVs like price, acceleration and fast charging capability with vehicle efficiency, through three scenes.</p>
+  <p class="instructions">Choose one of the buttons below to reveal a key metric chart.Discover your perfect Electric Vehicle (EV) with just a click and start your journey towards a Greener Future!</</p>
+  <p>The chart <b>">Efficiency & Accelaration</b> represents Efficiency in watt-hours per kilometer for different EVs on the x-axis and their ability to go from 0-100 Km/H accelaration in seconds on the y-axis.Hover over any datapoint to uncover the details of each vehicle to understand the trade-off between a car's acceleration and its efficiency.</p>
+  <div class="button-container">
+    <a href="index.html" class="Efficiency_button">Efficiency & Price</a>
+    <a href="acceleration.html" class="accel_button">Efficiency & Accelaration</a>
+    <a href="fastcharging.html" class="fast_button">Efficiency & FastCharge</a>
+  </div>
+  <p class="data-source"><b>Data Source:</b> <a href="https://www.kaggle.com/datasets/geoffnel/evs-one-electric-vehicle-dataset">EV-Dataset-Kaggle</a></p>
+  <div id="acceleration_chart"></div>
+  
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+</body>
+<script>
+
+const svg = d3.select("#acceleration_chart")
+  .append("svg")
+  .attr("width", 1000)
+  .attr("height", 600)
+  .append("g")
+  .attr("transform", `translate(60, 20)`);
+
+  var x_scale = d3.scaleLinear()
+  .domain([0, 300])
+  .range([0, 910]);
+    
+  var x_axis = d3.axisBottom(x_scale);
+
+  svg.append("g")
+  .attr("transform", `translate(0, 470)`)
+  .call(x_axis);
+
+  const y_scale = d3.scaleLinear()
+  .domain([0, 300000])
+  .range([470, 0]);
+
+  var y_axis = d3.axisLeft(y_scale)
+
+  svg.append("g")
+  .call(y_axis);
+
+d3.csv("ElectricCarData_Clean.csv").then( function(data) {
+
+  var tooltip = d3.select("#acceleration_chart").append("div")
+    .attr("class", "tooltip")
+
+  svg.append("g")
+  .selectAll("dot")
+  .data(data)
+  .enter()
+  .append("circle")
+      .attr("cx", function (d) { return x_scale(d.Efficiency_WhKm); } )
+      .attr("cy", function (d) { return y_scale(d.AccelSec); } )
+      .attr("r", 5)
+      .style("fill", "#66CDAA")
+      .style("opacity", 0.5)
+
+  .on("mouseover", function(event, d) {
+    d3.select(this)
+        .attr("r", 5)
+        .style("stroke", "black")
+        .style("stroke-width", 2);
+    tooltip.style("opacity", 1);
+  })
+
+ .on("mousemove", function(event, d) {
+  var tooltipHeight = tooltip.node().getBoundingClientRect().height;
+  var chartHeight = d3.select("#efficiency_chart").node().getBoundingClientRect().height;
+  var topPosition = event.pageY + 10;
+  if (event.pageY + tooltipHeight > chartHeight) {
+    topPosition = event.pageY - tooltipHeight - 20;
+  }
+  tooltip
+    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Accelaration in Seconds: "+ d.AccelSec + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
+    .style("left", (event.pageX)+10 + "px")
+    .style("top", topPosition + "px")
+})
+
+
+  .on("mouseleave", function(d) {
+     d3.select(this)
+        .attr("r", 5)
+        .style("stroke", "none");
+    tooltip.transition().duration(200).style("opacity", 0);
+  })
+
+  const annotations = [
+    {
+      note: {
+        label: "Tesla Roadster can go from 0 to 100 Km/H in 2.1 Seconds and is best in terms of accelaration with an efficiency of 206 Wh/Km",
+        title: "Fastest Accelaration"
+      },
+      type: d3.annotationCalloutCircle,
+      subject: { radius: 10 },
+      x: x_scale(206),
+      y: y_scale(2.1),
+      dy: 30,
+      dx: -30
+    },
+
+    {
+      note: {
+        label: "Renault Kangoo Maxi ZE 33 takes longest time of 22.4 Seconds to go from 0 to 100 Km/H with an efficiency of 194 Wh/Km",
+        title: "Slowest Accelaration"
+      },
+      type: d3.annotationCalloutCircle,
+      subject: { radius: 10 },
+      x: x_scale(194),
+      y: y_scale(22.4),
+      dy: 30,
+      dx: -30
+    }
+  ]
+
+  const makeAnnotations = d3.annotation()
+    .annotations(annotations)
+  svg.append("g")
+    .style("font-size", "12px")
+    .call(makeAnnotations)
+
+})
+</script>
+</html>
