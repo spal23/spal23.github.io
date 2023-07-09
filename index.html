@@ -120,13 +120,19 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     tooltip.style("opacity", 1);
   })
 
-  .on("mousemove", function(event, d) {
-    tooltip
-      .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Price in Euro: "+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
-      .style("left", (event.pageX)+10 + "px")
-      .style("top",  (event.pageY)+10+"px")
+ .on("mousemove", function(event, d) {
+  var tooltipHeight = tooltip.node().getBoundingClientRect().height;
+  var chartHeight = d3.select("#efficiency_chart").node().getBoundingClientRect().height;
+  var topPosition = event.pageY + 10;
+  if (event.pageY + tooltipHeight > chartHeight) {
+    topPosition = event.pageY - tooltipHeight - 20;
+  }
+  tooltip
+    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Price in Euro: "+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
+    .style("left", (event.pageX)+10 + "px")
+    .style("top", topPosition + "px")
+})
 
-  })
 
   .on("mouseleave", function(d) {
      d3.select(this)
