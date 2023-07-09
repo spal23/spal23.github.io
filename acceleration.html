@@ -173,5 +173,25 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     .call(makeAnnotations)
 
 })
+  // Add event listeners to the annotation elements
+d3.selectAll('.annotation')
+  .on('mouseover', function(event, d) {
+    tooltip.style("opacity", 1);
+  })
+  .on('mousemove', function(event, d) {
+    var tooltipHeight = tooltip.node().getBoundingClientRect().height;
+    var chartHeight = d3.select("#acceleration_chart").node().getBoundingClientRect().height;
+    var topPosition = event.pageY + 10;
+    if (event.pageY + tooltipHeight > chartHeight) {
+      topPosition = event.pageY - tooltipHeight - 20;
+    }
+    tooltip
+      .html("<b>" + d.note.title + "</b><br>" + d.note.label)
+      .style("left", (event.pageX)+10 + "px")
+      .style("top", topPosition + "px")
+  })
+  .on('mouseleave', function(d) {
+    tooltip.transition().duration(200).style("opacity", 0);
+  })
 </script>
 </html>
