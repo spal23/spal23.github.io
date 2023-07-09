@@ -125,7 +125,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     topPosition = event.pageY - tooltipHeight - 20;
   }
   tooltip
-    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "Accelaration in Seconds: "+ d.AccelSec + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
+    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm +" Wh/Km"+" " + "Accelaration: "+ d.AccelSec +" Seconds"+"</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model+"<br>Price: €"+d.PriceEuro)
     .style("left", (event.pageX)+10 + "px")
     .style("top", topPosition + "px")
 })
@@ -142,7 +142,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     {
       note: {
         label: "Tesla Roadster can go from 0 to 100 Km/H in 2.1 Seconds and is best in terms of accelaration with an efficiency of 206 Wh/Km",
-        title: "Fastest Accelaration"
+        title: "Fastest Accelaration - Tesla Roadster"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
@@ -155,7 +155,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     {
       note: {
         label: "Renault Kangoo Maxi ZE 33 takes longest time of 22.4 Seconds to go from 0 to 100 Km/H with an efficiency of 194 Wh/Km",
-        title: "Slowest Accelaration"
+        title: "Slowest Accelaration - Renault Kangoo Maxi ZE 33"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
