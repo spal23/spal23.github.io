@@ -166,19 +166,24 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     }
   ]
 
-  const makeAnnotations = d3.annotation()
-    .annotations(annotations)
-  svg.append("g")
-    .style("font-size", "12px")
-    .call(makeAnnotations)
+const makeAnnotations = d3.annotation()
+  .type(d3.annotationLabel)
+  .annotations(annotations);
 
-})
-  
+svg.append("g")
+  .attr("class", "annotation-group")
+  .call(makeAnnotations);
+
+d3.select(".annotation-group")
+  .selectAll("g")
+  .attr("class", "annotation");
+
+// Add event listeners to the annotation elements
 d3.selectAll('.annotation')
-  .on('mouseover', function(event, d) {
+  .on('mouseover', function (event, d) {
     tooltip.style("opacity", 1);
   })
-  .on('mousemove', function(event, d) {
+  .on('mousemove', function (event, d) {
     var tooltipHeight = tooltip.node().getBoundingClientRect().height;
     var chartHeight = d3.select("#acceleration_chart").node().getBoundingClientRect().height;
     var topPosition = event.pageY + 10;
@@ -187,11 +192,11 @@ d3.selectAll('.annotation')
     }
     tooltip
       .html("<b>" + d.note.title + "</b><br>" + d.note.label)
-      .style("left", (event.pageX)+10 + "px")
+      .style("left", (event.pageX) +10 + "px")
       .style("top", topPosition + "px")
   })
-  .on('mouseleave', function(d) {
+  .on('mouseleave', function (d) {
     tooltip.transition().duration(200).style("opacity", 0);
-  });
+  })
 </script>
 </html>
