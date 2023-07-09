@@ -1,3 +1,2 @@
 
-Project Website
-Visualization for EVs 
+Project Website - Visualization for EVs 
