@@ -130,7 +130,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     topPosition = event.pageY - tooltipHeight - 20;
   }
   tooltip
-    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + "Wh/Km"+" " + "FastCharge Rate: "+ d.FastCharge_KmH +"Km/H</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model+"Price: €"+d.PriceEuro)
+    .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " Wh/Km"+" " + "FastCharge Rate: "+ d.FastCharge_KmH +" Km/H</b><br>Brand: " + d.Brand + " "+"<br>Model: " + d.Model+"Price: €"+d.PriceEuro)
     .style("left", (event.pageX)+10 + "px")
     .style("top", topPosition + "px")
 })
@@ -146,7 +146,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   const annotations = [
     {
       note: {
-        label: "Tesla Model 3 Long Range Dual Motor has the Fastest recharge rate of 940 Km/H with an <b>Efficiency of 161 Wh/Km .",
+        label: "Tesla Model 3 Long Range Dual Motor has the Fastest recharge rate of 940 Km/H with an Efficiency of 161 Wh/Km .",
         title: "Best FastCharge Rate - Tesla Model 3 Long Range Dual Motor"
       },
       type: d3.annotationCalloutCircle,
