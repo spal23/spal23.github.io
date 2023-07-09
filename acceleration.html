@@ -173,8 +173,8 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     .call(makeAnnotations)
 
 })
-  // Add event listeners to the annotation elements
-d3.selectAll('.annotation')
+  
+d3.selectAll('.annotations')
   .on('mouseover', function(event, d) {
     tooltip.style("opacity", 1);
   })
