@@ -137,26 +137,26 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   const annotations = [
     {
       note: {
-        label: "The least accelaration EV is the Tesla Model S at 2.1 seconds",
-        title: "Least Accelaration"
+        label: "The highest accelaration EV is the Tesla rodster at 2.1 seconds",
+        title: "Highest Accelaration"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
       x: x_scale(2.1),
-      y: y_scale(170),
+      y: y_scale(206),
       dy: -130,
       dx: 10
     },
 
     {
       note: {
-        label: "The Dacia Spring Electric has highest accelaration 19.1 seconds!",
-        title: "Max Accelaration"
+        label: "The Renault Kangoo Electric has lowest accelaration 22.4 seconds!",
+        title: "Min Accelaration"
       },
       type: d3.annotationCalloutCircle,
       subject: { radius: 10 },
-      x: x_scale(19.1),
-      y: y_scale(161),
+      x: x_scale(22.4),
+      y: y_scale(194),
       dy: 30,
       dx: -30
     }
