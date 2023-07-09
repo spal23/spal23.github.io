@@ -73,7 +73,7 @@
 const svg = d3.select("#efficiency_chart")
   .append("svg")
   .attr("width", 1000)
-  .attr("height", 550)
+  .attr("height", 500)
   .append("g")
   .attr("transform", `translate(60, 30)`);
 
@@ -84,7 +84,7 @@ const svg = d3.select("#efficiency_chart")
   var x_axis = d3.axisBottom(x_scale);
 
   svg.append("g")
-  .attr("transform", `translate(0, 460)`)
+  .attr("transform", `translate(0, 470)`)
   .call(x_axis);
 
   const y_scale = d3.scaleLinear()
