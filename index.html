@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV Buyer's Guide</title>
+  <link rel="stylesheet" href="main1.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 20px;
+      margin: 20px 0;
+      text-align: justify;
+    }
+    p {
+      font-size: 15px;
+      margin: 10px 0;
+      max-width: 1350px;
+      text-align: justify;
+    }
+    .instructions {
+      font-size: 13;
+      font-weight: bold;
+      margin: 20px 0;
+      text-align: justify;
+    }
+
+    a {
+      color: #6495ED;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .data-source {
+      font-size: 13px;
+      margin-top: 35px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Electric Vehicle Buyer's Guide</h1>
+  <p>Electric vehicles (EVs) are gaining in popularity. <a href="https://www.kaggle.com/datasets/geoffnel/evs-one-electric-vehicle-dataset">EV-Dataset-Kaggle</a> lists the key metrics for all EVs. We'd like to compare some of these performance metrics with price, to find out which EVs offer the best value for efficiency.In our first chart, we compare <b>accelaration </b> in seconds (on the x-axis) with <b>efficiency in y-axis</b>. Using this visualization, we can see which vehicles offer the most efficiency!</p>
+  
+  <p class="instructions">Click on one of the buttons below to continue exploring these key metrics to find the right EV at the right efficiency for you! Hover over any of the datapoints to see the selected vehicle's details!</</p>
+
+  <div class="button-container">
+    <a href="index.html" class="range_button active">Range</a>
+    <a href="acceleration.html" class="accel_button">Acceleration</a>
+    <a href="fastcharging.html" class="fast_button">Fast-Charging</a>
+  </div>
+
+  <div id="range_chart"></div>
+
+  <p class="data-source">Data Source: <a href="https://www.kaggle.com/datasets/geoffnel/evs-one-electric-vehicle-dataset">EV-Dataset-Kaggle</a></p>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+</body>
+<script>
+
+const svg = d3.select("#range_chart")
+  .append("svg")
+  .attr("width", 1000)
+  .attr("height", 620)
+  .append("g")
+  .attr("transform", `translate(60, 30)`);
+
+  var x_scale = d3.scaleLinear()
+  .domain([0, 25])
+  .range([0, 920]);
+    
+  var x_axis = d3.axisBottom(x_scale);
+
+  svg.append("g")
+  .attr("transform", `translate(0, 560)`)
+  .call(x_axis);
+
+  const y_scale = d3.scaleLinear()
+  .domain([0, 300])
+  .range([570, 0]);
+
+  var y_axis = d3.axisLeft(y_scale)
+
+  svg.append("g")
+  .call(y_axis);
+
+d3.csv("ElectricCarData_Clean.csv").then( function(data) {
+
+  var tooltip = d3.select("#range_chart").append("div")
+    .attr("class", "tooltip")
+
+  svg.append("g")
+  .selectAll("dot")
+  .data(data)
+  .enter()
+  .append("circle")
+      .attr("cx", function (d) { return x_scale(d.AccelSec); } )
+      .attr("cy", function (d) { return y_scale(d.Efficiency_WhKm); } )
+      .attr("r", 5)
+      .style("fill", "#66CDAA")
+      .style("opacity", 0.5)
+
+  .on("mouseover", function(event, d) {
+    d3.select(this)
+        .attr("r", 5)
+        .style("stroke", "black")
+        .style("stroke-width", 2);
+    tooltip.style("opacity", 1);
+  })
+
+  .on("mousemove", function(event, d) {
+    tooltip
+      .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " " + "AccelSec: "+ d.acceleration + "</b><br>make: " + d.Brand + "<br>model: " + d.Model)
+      .style("left", (event.pageX)+10 + "px")
+      .style("top",  (event.pageY) +"px")
+
+  })
+
+  .on("mouseleave", function(d) {
+     d3.select(this)
+        .attr("r", 5)
+        .style("stroke", "none");
+    tooltip.transition().duration(200).style("opacity", 0);
+  })
+
+  const annotations = [
+    {
+      note: {
+        label: "The least accelaration EV is the Tesla Model S at 2.1 seconds",
+        title: "Least Accelaration"
+      },
+      type: d3.annotationCalloutCircle,
+      subject: { radius: 10 },
+      x: x_scale(2.1),
+      y: y_scale(170),
+      dy: -130,
+      dx: 10
+    },
+
+    {
+      note: {
+        label: "The Dacia Spring Electric has highest accelaration 19.1 seconds!",
+        title: "Max Accelaration"
+      },
+      type: d3.annotationCalloutCircle,
+      subject: { radius: 10 },
+      x: x_scale(19.1),
+      y: y_scale(161),
+      dy: 30,
+      dx: -30
+    }
+  ]
+
+  const makeAnnotations = d3.annotation()
+    .annotations(annotations)
+  svg.append("g")
+    .style("font-size", "12px")
+    .call(makeAnnotations)
+
+})
+</script>
+</html>
