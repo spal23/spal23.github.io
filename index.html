@@ -73,13 +73,13 @@
 const svg = d3.select("#efficiency_chart")
   .append("svg")
   .attr("width", 1000)
-  .attr("height", 500)
+  .attr("height", 550)
   .append("g")
-  .attr("transform", `translate(70, 30)`);
+  .attr("transform", `translate(60, 30)`);
 
   var x_scale = d3.scaleLinear()
   .domain([0, 300])
-  .range([0, 920]);
+  .range([0, 910]);
     
   var x_axis = d3.axisBottom(x_scale);
 
