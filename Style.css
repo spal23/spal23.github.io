@@ -1,4 +1,4 @@
-.range_button {
+.Efficiency_button {
   color: #ffffff;
   background-color: #66CDAA;
   border: none;
@@ -13,14 +13,14 @@
   transition: all 0.3s ease 0s;
 }
 
-.range_button:hover {
+.Efficiency_button:hover {
   background-color: #48D1CC;
   box-shadow: 0px 15px 20px rgba(46,229,157,0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 
-.range_button:active {
+.Efficiency_button:active {
   color: #ffffff;
   background-color: #48D1CC;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -102,5 +102,3 @@ div.tooltip {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     pointer-events: none;
 }
-
-
