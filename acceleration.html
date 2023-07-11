@@ -221,7 +221,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
           .style("opacity", 1)
           .html("<b>" +"Efficiency: " + d.Efficiency_WhKm +" Wh/Km"+" " + "Accelaration: "+ d.AccelSec +" Seconds"+"</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model+"<br>Price: €"+d.PriceEuro)
           .style("left", (event.pageX)+10 + "px")
-          .style("top", (event.pageY) + "px")
+          .style("top", topPosition + "px")
       })
       .on("mouseleave", function(d) {
         tooltip
