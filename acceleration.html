@@ -175,6 +175,55 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     .style("font-size", "12px")
     .call(makeAnnotations)
 
+  const g2 = svg.append("g")
+    .attr("id", "tooltipDots")
+
+  const tooltipDotData = [
+    {
+      x: x_scale(206),
+      y: y_scale(2.1),
+      Efficiency_WhKm: 206,
+      PriceEuro: 215000,
+      Brand: "Tesla",
+      Model: "Roadster",
+      AccelSec: 2.1
+      
+    },
+    {
+      x: x_scale(194),
+      y: y_scale(22.4),
+      Efficiency_WhKm: 194,
+      PriceEuro: 38000,
+      Brand: "Renault",
+      Model: "Kangoo Maxi ZE 33",
+      AccelSec: 22.4
+      
+    }
+  ]
+  g2.selectAll("circle")
+    .data(tooltipDotData)
+    .enter()
+    .append("circle")
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+      .style("fill", "#FF69B4")
+      .style("opacity", 0.5)
+      .style("pointer-events", "all")
+      .on("mouseover", function(event, d) {
+        tooltip
+          .style("opacity", 1)
+          .html("<b>" +"Efficiency: " + d.Efficiency_WhKm +" Wh/Km"+" " + "Accelaration: "+ d.AccelSec +" Seconds"+"</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model+"<br>Price: €"+d.PriceEuro)
+          .style("left", (event.pageX)+10 + "px")
+          .style("top", (event.pageY) + "px")
+      })
+      .on("mouseleave", function(d) {
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0)
+      })
+  
 })
 
 
