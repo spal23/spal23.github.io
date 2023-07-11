@@ -175,6 +175,43 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     .style("font-size", "12px")
     .call(makeAnnotations)
 
+ const g2 = svg.append("g")
+    .attr("id", "tooltipDots")
+
+  const tooltipDotData = [
+    {
+      x: x_scale(206),
+      y: y_scale(215000)
+    },
+    {
+      x: x_scale(104),
+      y: y_scale(149000)
+    }
+  ]
+  g2.selectAll("circle")
+    .data(tooltipDotData)
+    .enter()
+    .append("circle")
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+      .style("fill", "#66CDAA")
+      .style("opacity", 0.5)
+      .style("pointer-events", "all")
+      .on("mouseover", function(event, d) {
+        tooltip
+          .style("opacity", 1)
+          .html("<b>" +"Efficiency: " + d.Efficiency_WhKm +" Wh/Km"+" " + "Price: €"+ d.PriceEuro + "</b><br>Brand: " + d.Brand + "<br>Model: " + d.Model)
+          .style("left", (event.pageX)+10 + "px")
+          .style("top", (event.pageY) + "px")
+      })
+      .on("mouseleave", function(d) {
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0)
+      })
+  
 })
 </script>
 </html>
