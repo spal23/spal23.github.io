@@ -217,7 +217,7 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
       .style("pointer-events", "all")
       .on("mouseover", function(event, d) {
          var tooltipHeight = tooltip.node().getBoundingClientRect().height;
-         var chartHeight = d3.select("#acceleration_chart").node().getBoundingClientRect().height;
+         var chartHeight = d3.select("#fastcharge_chart").node().getBoundingClientRect().height;
          var topPosition = event.pageY + 10;
          if (event.pageY + tooltipHeight > chartHeight) {
          topPosition = event.pageY - tooltipHeight - 20;
