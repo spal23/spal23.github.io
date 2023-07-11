@@ -181,11 +181,21 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
   const tooltipDotData = [
     {
       x: x_scale(206),
-      y: y_scale(215000)
+      y: y_scale(215000),
+      Efficiency: 206,
+      Price: 215000,
+      Brand: "Tesla",
+      Model: "Roadster"
+      
     },
     {
       x: x_scale(104),
-      y: y_scale(149000)
+      y: y_scale(149000),
+      Efficiency: 104,
+      Price: 149000,
+      Brand: "Lightyear",
+      Model: "One"
+      
     }
   ]
   g2.selectAll("circle")
