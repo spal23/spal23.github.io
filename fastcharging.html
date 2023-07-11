@@ -180,6 +180,61 @@ d3.csv("ElectricCarData_Clean.csv").then( function(data) {
     .style("font-size", "12px")
     .call(makeAnnotations)
 
+  const g2 = svg.append("g")
+    .attr("id", "tooltipDots")
+
+  const tooltipDotData = [
+    {
+      x: x_scale(161),
+      y: y_scale(940),
+      Efficiency_WhKm: 161,
+      PriceEuro: 55480,
+      Brand: "Tesla",
+      Model: "Model 3 Long Range Dual Motor",
+      FastCharge_KmH: 940
+      
+    },
+    {
+      x: x_scale(166),
+      y: y_scale(170),
+      Efficiency_WhKm: 166,
+      PriceEuro: 21421,
+      Brand: "Volkswagen",
+      Model: "e-Up! ",
+      FastCharge_KmH: 170
+      
+    }
+  ]
+  g2.selectAll("circle")
+    .data(tooltipDotData)
+    .enter()
+    .append("circle")
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+      .style("fill", "#6495ED")
+      .style("opacity", 0.5)
+      .style("pointer-events", "all")
+      .on("mouseover", function(event, d) {
+         var tooltipHeight = tooltip.node().getBoundingClientRect().height;
+         var chartHeight = d3.select("#acceleration_chart").node().getBoundingClientRect().height;
+         var topPosition = event.pageY + 10;
+         if (event.pageY + tooltipHeight > chartHeight) {
+         topPosition = event.pageY - tooltipHeight - 20;
+         }
+        tooltip
+          .style("opacity", 1)
+          .html("<b>" +"Efficiency: " + d.Efficiency_WhKm + " Wh/Km"+" " + "FastCharge: "+ d.FastCharge_KmH +" Km/H</b><br>Brand: " + d.Brand +" " +"<br>Model: " + d.Model+"<br>Price: €"+d.PriceEuro)
+          .style("left", (event.pageX)+10 + "px")
+          .style("top", topPosition + "px")
+      })
+      .on("mouseleave", function(d) {
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0)
+      })
+  
 })
 
 
